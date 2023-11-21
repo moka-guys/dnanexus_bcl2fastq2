@@ -1,0 +1,81 @@
+{
+  "name": "bcl2fastq2_v1.0.0",
+  "title": "bcl2fastq2_v1.0.0",
+  "summary": "v1.0.0 - demultiplexing with bcl2fastq2",
+  "properties": {
+    "github release": "v1.0.0"
+  },
+  "dxapi": "1.0.0",
+  "inputSpec": [
+    { 
+      "name": "samplesheet",
+      "label": "samplesheet",
+      "help": "samplesheet as csv file",
+      "class": "file",
+      "patterns": ["*SampleSheet.csv"],
+      "optional": false
+    },
+    {
+      "name": "demultiplex_args",
+      "label": "demultiplex options",
+      "help": "arguments for bcl2fastq2",
+      "class": "string",
+      "optional": false
+    },
+    {
+      "name": "project_to_demultiplex",
+      "label": "runfolder_project",
+      "help": "the name of the project to download the run from",
+      "class": "string",
+      "optional": false
+    }
+  ],
+  "outputSpec": [
+    {
+      "name": "fastqs",
+      "label": "fastqs",
+      "help": "demultiplexed_fastqs.",
+      "class": "array:file",
+      "optional":false
+    },
+    {
+      "name": "stats_json",
+      "label": "bcl2fastq stats json",
+      "help": "stats.json",
+      "class": "file",
+      "optional":false
+    },
+    {
+      "name": "bcl2fastq2_output",
+      "label": "bcl2fastq logfile",
+      "help": "bcl2fastq output",
+      "class": "file",
+      "optional": false
+    }
+  ],
+  "runSpec": {
+    "interpreter": "bash",
+    "distribution": "Ubuntu",
+    "release": "20.04",
+    "version": "0",
+    "file": "src/code.sh",
+    "execDepends": []
+},
+  "access": {
+    "network": [
+      "*"
+    ],
+    "project": "CONTRIBUTE",
+    "allProjects": "VIEW"
+  },
+  "ignoreReuse": false,
+  "regionalOptions": {
+    "aws:us-east-1": {
+      "systemRequirements": {
+        "main": {
+          "instanceType": "mem2_ssd1_v2_x16"
+        }
+      }
+    }
+  }
+}
